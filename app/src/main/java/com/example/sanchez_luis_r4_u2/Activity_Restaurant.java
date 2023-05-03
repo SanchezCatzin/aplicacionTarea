@@ -6,11 +6,13 @@ import androidx.appcompat.widget.Toolbar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class Activity_Restaurant extends AppCompatActivity {
@@ -30,9 +32,16 @@ public class Activity_Restaurant extends AppCompatActivity {
 
         TextView textView = findViewById(R.id.restaurant);
         textView.setText(message);
-        listaItemsRest = (ListView)findViewById(R.id.listView_restaurant);
 
-        Comida[] comidas = new Comida[3];
+        listaItemsRest = (ListView)findViewById(R.id.listView_restaurant);
+        ArrayList<Producto> productoArrayList = new ArrayList<>();
+        AdaptadorProducto adaptadorProducto = new AdaptadorProducto(this,productoArrayList);
+
+        adaptadorProducto.add(new Producto("Comida A", "$1"));
+        adaptadorProducto.add(new Producto("Comida B", "$2"));
+        adaptadorProducto.add(new Producto("Comida C", "$3"));
+        adaptadorProducto.add(new Producto("Comida D", "$4"));
+        /*Comida[] comidas = new Comida[3];
         String[] mostrarCom = new String[comidas.length];
 
         String muchoTexto = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pretium auctor quam eget maximus. Fusce sollicitudin erat et tristique consequat. Duis lobortis vitae nibh vel auctor. Pellentesque sagittis purus vel tortor aliquet malesuada. Aliquam congue felis in augue pulvinar, eget posuere elit blandit.";
@@ -57,14 +66,16 @@ public class Activity_Restaurant extends AppCompatActivity {
             default:
                 Log.e(MainActivity.class.getSimpleName(),"Erorr");
                 break;
-        }
+        }*/
 
-        for (int i = 0 ; i < comidas.length; i++){
+        /*for (int i = 0 ; i < comidas.length; i++){
             mostrarCom[i] = comidas[i].getComida();
-        }
+        }*/
 
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,mostrarCom);
-        listaItemsRest.setAdapter(adapter);
+        /*adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,mostrarCom);
+        listaItemsRest.setAdapter(adapter);*/
+
+        listaItemsRest.setAdapter(adaptadorProducto);
 
 
         Toolbar toolbar = findViewById(R.id.toolbar_restaurant);
@@ -75,14 +86,14 @@ public class Activity_Restaurant extends AppCompatActivity {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                Activity_Restaurant.this.adapter.getFilter().filter(query);
+                //Activity_Restaurant.this.adapter.getFilter().filter(query);
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                Activity_Restaurant.this.adapter.getFilter().filter(newText);
-                return false;
+                adaptadorProducto.getFilter().filter(newText);
+                return true;
             }
         });
 
