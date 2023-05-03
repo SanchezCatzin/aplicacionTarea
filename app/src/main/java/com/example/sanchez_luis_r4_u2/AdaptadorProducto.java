@@ -40,9 +40,10 @@ public class AdaptadorProducto extends ArrayAdapter<Producto> {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getContext(),producto.consepto +" "+producto.costo, Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(contexto, Alimento_seleccionado.class);
-
-                contexto.startActivity(intent);
+                Intent nuevoInten = new Intent(contexto, Alimento_seleccionado.class);
+                nuevoInten.putExtra("alimento",producto.consepto);
+                nuevoInten.putExtra("costo", producto.costo);
+                contexto.startActivity(nuevoInten);
             }
         });
 
