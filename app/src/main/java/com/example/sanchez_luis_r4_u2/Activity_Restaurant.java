@@ -8,12 +8,15 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import java.util.Objects;
 
 public class Activity_Restaurant extends AppCompatActivity {
     private ListView listaItemsRest;
+    private SearchView searchView;
+    ArrayAdapter <String> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +25,8 @@ public class Activity_Restaurant extends AppCompatActivity {
 
         Intent intent = getIntent();
         String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
+
+        searchView = findViewById(R.id.buscarItem);
 
         TextView textView = findViewById(R.id.restaurant);
         textView.setText(message);
@@ -58,7 +63,7 @@ public class Activity_Restaurant extends AppCompatActivity {
             mostrarCom[i] = comidas[i].getComida();
         }
 
-        ArrayAdapter <String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,mostrarCom);
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,mostrarCom);
         listaItemsRest.setAdapter(adapter);
 
 
@@ -66,5 +71,20 @@ public class Activity_Restaurant extends AppCompatActivity {
         toolbar.setTitle(message);
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                Activity_Restaurant.this.adapter.getFilter().filter(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                Activity_Restaurant.this.adapter.getFilter().filter(newText);
+                return false;
+            }
+        });
+
     }
 }

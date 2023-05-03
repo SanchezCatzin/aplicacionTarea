@@ -23,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
 
     private SearchView searchView;
 
+    ArrayAdapter <String> adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,13 +42,12 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
-        ArrayAdapter <String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,items);
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,items);
         listView.setAdapter(adapter);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("Restaurantes");
         setSupportActionBar(toolbar);
-
 
        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
            @Override
@@ -57,5 +58,20 @@ public class MainActivity extends AppCompatActivity {
                startActivity(cuadroSeleccionado);
            }
        });
+
+       searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+           @Override
+           public boolean onQueryTextSubmit(String query) {
+               MainActivity.this.adapter.getFilter().filter(query);
+               return false;
+           }
+
+           @Override
+           public boolean onQueryTextChange(String newText) {
+               MainActivity.this.adapter.getFilter().filter(newText);
+               return false;
+           }
+       });
+
     }
 }
