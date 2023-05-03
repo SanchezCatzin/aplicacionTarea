@@ -6,26 +6,40 @@
     android:layout_height="match_parent"
     tools:context=".Alimento_seleccionado">
 
+    <androidx.appcompat.widget.Toolbar
+
+        android:id="@+id/toolbar_Alimento_Seleccionado"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#DE91F3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </androidx.appcompat.widget.Toolbar>
+
     <TextView
         android:id="@+id/textoCosto"
-        android:layout_width="95dp"
-        android:layout_height="28dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="584dp"
         android:text="@string/costo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.775"
+        app:layout_constraintHorizontal_bias="0.783"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.075" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_Alimento_Seleccionado"
+        app:layout_constraintVertical_bias="0.515" />
 
     <TextView
         android:id="@+id/textAlimento"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="36dp"
         android:text="@string/alimento"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.69"
+        app:layout_constraintHorizontal_bias="0.8"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textoCosto" />
 
@@ -38,20 +52,21 @@
         app:layout_constraintHorizontal_bias="0.072"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.061"
-        app:srcCompat="@drawable/taco" />
+        app:layout_constraintVertical_bias="0.151"
+        app:srcCompat="@drawable/taco"
+        android:contentDescription="@string/todo" />
 
     <TextView
         android:id="@+id/textDescripcion"
-        android:layout_width="352dp"
-        android:layout_height="116dp"
+        android:layout_width="395dp"
+        android:layout_height="149dp"
         android:text="@string/texto_descripcion"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.343" />
+        app:layout_constraintVertical_bias="0.43" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -41,6 +41,9 @@ public class Activity_Restaurant extends AppCompatActivity {
         adaptadorProducto.add(new Producto("Comida B", "$2"));
         adaptadorProducto.add(new Producto("Comida C", "$3"));
         adaptadorProducto.add(new Producto("Comida D", "$4"));
+
+
+
         /*Comida[] comidas = new Comida[3];
         String[] mostrarCom = new String[comidas.length];
 

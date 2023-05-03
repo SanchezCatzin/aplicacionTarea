@@ -36,11 +36,15 @@ public class MainActivity extends AppCompatActivity {
         cuadroSeleccionado = new Intent(this,Activity_Restaurant.class);
 
 
-        String[] items = new String[50];
-        for(int i= 0; i<items.length; i++){
-            items[i]="item"+(i+1);
+        String[] items = new String[4];
+        items[0]= "Restaurant A";
+        items[1]= "Restaurant B";
+        items[2]= "Restaurant C";
+        items[3]= "Restaurant D";
 
-        }
+        //for(int i= 0; i<items.length; i++){
+        //    items[i]="item"+(i+1);
+        //}
 
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,items);
         listView.setAdapter(adapter);
