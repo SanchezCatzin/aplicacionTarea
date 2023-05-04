@@ -1,24 +1,38 @@
 package com.example.sanchez_luis_r4_u2;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.ContextMenu;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class Activity_Restaurant extends AppCompatActivity {
+public class Activity_Restaurant extends AppCompatActivity implements IntCategoria{
     private ListView listaItemsRest;
     private SearchView searchView;
     ArrayAdapter <String> adapter;
+    private AdaptadorProducto adaptadorProducto;
+    private ArrayList<Producto> productoArrayList;
+
+    public static final int OPCION_COMIDA = R.id.opcion_comida;
+    public static final int OPCION_BEBIDA = R.id.opcion_comida;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +40,9 @@ public class Activity_Restaurant extends AppCompatActivity {
         setContentView(R.layout.activity_restaurant);
 
         Intent intent = getIntent();
+
         String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
+        String comida = intent.getStringExtra(MainActivity.EXTRA_COMIDA);
 
         searchView = findViewById(R.id.buscarItem);
 
@@ -34,14 +50,27 @@ public class Activity_Restaurant extends AppCompatActivity {
         textView.setText(message);
 
         listaItemsRest = (ListView)findViewById(R.id.listView_restaurant);
-        ArrayList<Producto> productoArrayList = new ArrayList<>();
-        AdaptadorProducto adaptadorProducto = new AdaptadorProducto(this,productoArrayList);
+        productoArrayList = new ArrayList<>();
+        adaptadorProducto = new AdaptadorProducto(this,productoArrayList);
 
-        adaptadorProducto.add(new Producto("Comida A", "$1"));
-        adaptadorProducto.add(new Producto("Comida B", "$2"));
-        adaptadorProducto.add(new Producto("Comida C", "$3"));
-        adaptadorProducto.add(new Producto("Comida D", "$4"));
+        Toast.makeText(this,comida,Toast.LENGTH_SHORT).show();
 
+        if (comida.equals("comida")){
+            adaptadorProducto.add(new Producto("Comida A", "$1"));
+            adaptadorProducto.add(new Producto("Comida B", "$2"));
+            adaptadorProducto.add(new Producto("Comida C", "$3"));
+            adaptadorProducto.add(new Producto("Comida D", "$4"));
+        } else if (comida.equals("bebida")) {
+            adaptadorProducto.add(new Producto("Bebida A", "$11"));
+            adaptadorProducto.add(new Producto("Bebida B", "$21"));
+            adaptadorProducto.add(new Producto("Bebida C", "$31"));
+            adaptadorProducto.add(new Producto("Bebida D", "$41"));
+        } else if (comida.equals("complemento")) {
+            adaptadorProducto.add(new Producto("Complemento A", "$12"));
+            adaptadorProducto.add(new Producto("Complemento B", "$22"));
+            adaptadorProducto.add(new Producto("Complemento C", "$32"));
+            adaptadorProducto.add(new Producto("Complemento D", "$42"));
+        }
 
 
         /*Comida[] comidas = new Comida[3];
@@ -81,6 +110,7 @@ public class Activity_Restaurant extends AppCompatActivity {
         listaItemsRest.setAdapter(adaptadorProducto);
 
 
+
         Toolbar toolbar = findViewById(R.id.toolbar_restaurant);
         toolbar.setTitle(message);
         setSupportActionBar(toolbar);
@@ -101,4 +131,28 @@ public class Activity_Restaurant extends AppCompatActivity {
         });
 
     }
+    @Override
+    public void getCategoriaSelected(int categorySelected) {
+        Toast.makeText(this,"Seleccionando"+categorySelected,Toast.LENGTH_SHORT).show();
+        adaptadorProducto.clear();
+        if (categorySelected == 0){
+            adaptadorProducto.add(new Producto("Comida A", "$1"));
+            adaptadorProducto.add(new Producto("Comida B", "$2"));
+            adaptadorProducto.add(new Producto("Comida C", "$3"));
+            adaptadorProducto.add(new Producto("Comida D", "$4"));
+        } else if (categorySelected == 1) {
+            adaptadorProducto.add(new Producto("Bebida A", "$11"));
+            adaptadorProducto.add(new Producto("Bebida B", "$21"));
+            adaptadorProducto.add(new Producto("Bebida C", "$31"));
+            adaptadorProducto.add(new Producto("Bebida D", "$41"));
+        } else if (categorySelected == 2) {
+            adaptadorProducto.add(new Producto("Complemento A", "$12"));
+            adaptadorProducto.add(new Producto("Complemento B", "$22"));
+            adaptadorProducto.add(new Producto("Complemento C", "$32"));
+            adaptadorProducto.add(new Producto("Complemento D", "$42"));
+        }
+
+        listaItemsRest.setAdapter(adaptadorProducto);
+    }
+
 }

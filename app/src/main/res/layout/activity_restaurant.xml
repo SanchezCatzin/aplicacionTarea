@@ -25,14 +25,25 @@
 
     </androidx.appcompat.widget.Toolbar>
 
+    <fragment
+        android:id="@+id/fragment"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_restaurant"
+        android:name="com.example.sanchez_luis_r4_u2.CategoriaPrueba"
+        tools:layout="@layout/fragment_categoria_prueba"/>
+
     <TextView
         android:id="@+id/restaurant"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
+        android:layout_marginStart="16dp"
         android:text="@string/restaurant_seleccion"
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar_restaurant" />
+        app:layout_constraintTop_toBottomOf="@+id/fragment" />
 
     <ListView
         android:id="@+id/listView_restaurant"
@@ -43,6 +54,6 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/restaurant"
-        app:layout_constraintVertical_bias="0.461" />
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
