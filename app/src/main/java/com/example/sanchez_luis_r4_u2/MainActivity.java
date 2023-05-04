@@ -84,8 +84,8 @@ public class MainActivity extends AppCompatActivity{
            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                String texto = listView.getItemAtPosition(position).toString();
                textView.setText(texto);
-               //cuadroSeleccionado.putExtra(EXTRA_MESSAGE, texto);
-               //cuadroSeleccionado.putExtra(EXTRA_COMIDA, "comida");
+               cuadroSeleccionado.putExtra(EXTRA_MESSAGE, texto);
+               cuadroSeleccionado.putExtra(EXTRA_COMIDA, "comida");
 
                startActivity(cuadroSeleccionado);
            }
