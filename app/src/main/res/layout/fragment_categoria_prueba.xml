@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CategoriaPrueba">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/mostrarComidas"
+            android:layout_width="130dp"
+            android:layout_height="50dp"
+            android:text="@string/comida_fragment"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/mostrarBebidas"
+            android:layout_width="117dp"
+            android:layout_height="50dp"
+            android:text="@string/bebida_fragment"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/mostrarComplementos"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:text="@string/complemento_fragment"
+            android:textSize="25sp" />
+
+    </LinearLayout>
+
+</FrameLayout>
